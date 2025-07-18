@@ -2,284 +2,408 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home - SURESHKUMAR S</title>
+  <title>Developer Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --card: rgba(255, 255, 255, 0.3);
-      --hover: #333;
+      --card: rgba(255,255,255,0.3);
+      --hover: #3b4261;
       --text-hover: #fff;
       --glass: rgba(255,255,255,0.6);
       --accent: #0ff;
+      --primary: #0047ab;
+      --gallery-btn-bg: #22242a;
+      --modal-bg: rgba(0,0,0,0.85);
     }
     body.dark {
       --bg: #000000;
       --text: #ffffff;
-      --card: rgba(0, 0, 0, 0.5);
+      --card: rgba(0,0,0,0.5);
       --hover: #0ff;
       --text-hover: #000;
       --glass: rgba(0,0,0,0.6);
+      --gallery-btn-bg: #1e2240;
+      --modal-bg: rgba(0,0,0,0.92);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-    }
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Bradley Hand ITC', cursive;}
     body {
       background: var(--bg) url('your-photo.jpg') center/cover no-repeat fixed;
       color: var(--text);
-      height: 100vh;
+      min-height: 100vh;
       transition: background 0.5s, color 0.5s;
       overflow-x: hidden;
       position: relative;
     }
     body::before {
       content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.35);
       z-index: -1;
+      pointer-events: none;
     }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 0;
-      background: none;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      pointer-events: none;
+      position: fixed; top: 0; left:0; background: none; z-index: 1000;
+      display: flex; flex-direction: column; align-items: flex-start;
+      pointer-events: none; width: 100vw;
     }
     .header-inner {
-      margin: 18px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      background: var(--glass);
-      box-shadow: 0 4px 24px 2px rgba(0,0,0,0.07);
-      border-radius: 26px;
+      margin: 18px; background: var(--glass); box-shadow: 0 4px 24px 2px rgba(0,0,0,0.07);
+      border-radius: 26px; 
       backdrop-filter: blur(12px);
       border: 1.5px solid rgba(200,200,200,0.18);
-      pointer-events: auto;
-      padding: 12px 24px;
-    }
-    .brand-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      user-select: none;
-      cursor: default;
-    }
-    .brand {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      background: linear-gradient(90deg, #00fff7, #0077ff, #00fff7);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 8s ease infinite;
-      text-transform: uppercase;
-      text-shadow:
-        0 0 3px #00fff7,
-        0 0 6px #00fff7,
-        0 0 8px #0077ff;
-      filter: brightness(1);
-      transition: text-shadow 0.3s;
-    }
-    .brand:hover {
-      text-shadow: 0 0 12px var(--accent), 0 0 2px #fff;
-    }
-    .tagline {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-      opacity: 0.7;
-      letter-spacing: 0.12em;
-      font-style: italic;
-      margin-left: 2px;
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .fixed-clock {
-      position: fixed;
-      top: 24px;
-      right: 32px;
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: var(--text);
-      background: var(--glass);
-      border-radius: 16px;
-      padding: 8px 22px 8px 16px;
+      pointer-events: auto; padding: 12px 24px;
+      gap: 24px;
       display: flex;
       align-items: center;
-      gap: 7px;
     }
-    .fixed-clock::before {
-      content: "⏰";
-      margin-right: 7px;
-      font-size: 1.1em;
-      opacity: 0.7;
+    .social-icons { display: flex; gap: 13px; margin-top: 4px; }
+    .social-icons a {
+      display: inline-block; width: 25px; height: 25px; color: var(--primary); 
+      border-radius: 50%; background: #e1eefeaa; text-align: center; line-height: 27px;
+      font-size: 17px; transition: background 0.2s, color 0.2s; text-decoration: none;
     }
-
+    .social-icons a:hover { color: var(--accent); background: var(--hover);}
+    .social-icons .mail {
+      background: #fff3; color: #c23a2b; font-size: 18px; font-weight: bold; letter-spacing:0.02em; border:1px solid #ccc;
+    }
+    .fixed-clock { position:fixed; top:24px; right:32px; font-size:1.18rem; font-weight:600; color:var(--text);
+      background:var(--glass); border-radius:16px; padding:8px 22px 8px 16px; display:flex; align-items:center;
+      gap:7px; z-index: 1010;}
+    .fixed-clock::before { content:"⏰"; margin-right:7px; font-size:1.1em; opacity:0.7;}
     .fixed-toggle-btn {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      font-size: 1.1rem;
-      background: var(--glass);
-      border: none;
-      color: var(--text);
-      border-radius: 16px;
-      padding: 10px 22px;
+      position: fixed; bottom: 32px; left: 32px; font-size: 1.1rem;
+      background: var(--glass); border: none; color: var(--text);
+      border-radius: 16px; padding: 10px 22px; cursor: pointer;
+      font-weight: 700; z-index: 1010;
+    }
+    .scrolltop-btn {
+      position:fixed; right: 32px; bottom:115px; width:44px; height:44px; border-radius:50%;
+      background:var(--card); border: 2px solid var(--text); color: var(--text); font-size: 20px;
+      display:flex; align-items:center; justify-content:center; cursor: pointer; z-index: 1010; display:none;
+    }
+    .main-content {
+      max-width: 760px; margin:140px auto 80px auto;
+      padding:40px 27px 42px 27px;
+      background: var(--glass); border-radius:24px; box-shadow:0 8px 38px 2px rgba(0,0,0,0.07);
+    }
+    .about-me { display:flex; flex-wrap: wrap; gap:36px; align-items: center;}
+    .avatar { width:140px; height:140px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow: 0 0 16px #00fff777;}
+    .bio-details { flex:1 1 260px;}
+    .bio-details h2 { font-size:2rem; margin-bottom:10px; color: #fff;}
+    .bio-details p { color:#fff; font-size:1.09rem;}
+    .languages {display: flex; gap: 7px; margin: 8px 0 6px 0;}
+    .language-btn {
+      display:inline-block; padding:5px 17px; border-radius:10px;
+      background:var(--accent); color:var(--text-hover); font-weight:700; border:none; cursor:pointer; font-size:1em;
+      margin-right:6px; transition:background .2s;
+    }
+    .language-btn:hover { background:var(--hover); color:var(--accent);}
+    .resume-btn {margin-top:10px;}
+    .gallery-toggle-btn {
+      display: flex; align-items: center;
+      background: var(--gallery-btn-bg); color: #fff;
+      min-width: 138px; border: none; border-radius: 32px;
+      font-size: 1.13em; font-weight: bold;
+      padding: 7px 24px 7px 16px; margin: 30px 0 13px 0;
       cursor: pointer;
-      font-weight: 700;
+      box-shadow: 0 3px 14px 0 #0003, 0 1.5px 0 #fff2 inset;
+      position: relative; transition: box-shadow 0.11s, background 0.19s;
+      overflow: hidden; letter-spacing: 0.01em;
     }
-
-    .bubble-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--text);
-      color: var(--text);
-      font-size: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+    .gallery-toggle-btn:after {
+      content: ""; position: absolute; left: 7px; right: 7px; bottom: 3px;
+      height: 7px; border-radius: 0 0 8px 8px;
+      background: linear-gradient(90deg,#23c4f8 10%,#cb46ff 36%,#ffb236 63%,#00fa9a 89%);
+      z-index: 0; pointer-events:none; filter: drop-shadow(0 1px 8px #8f9fff80);
     }
-
-    .bubble-menu {
-      position: fixed;
-      bottom: 60px;
-      right: 60px;
+    .gallery-toggle-btn .gallery-btn-icon { display: flex; align-items: center; margin-right: 13px; z-index: 1; }
+    .gallery-toggle-btn .sparkle { margin-right: 2px; stroke: #fffacd; stroke-width: 1.2; filter: drop-shadow(0 0 2px #f9f299);}
+    .gallery-toggle-btn .magnifier { margin-right: 2px; stroke: #fff; filter: drop-shadow(0 0 2px #fff5);}
+    .gallery-toggle-btn span { position: relative; z-index: 2; font-weight: bold; font-size: 1.09em; }
+    .gallery-toggle-btn:focus { outline: 2.2px solid #23c4f8; }
+    #gallery-section {
+      display: none; margin: 28px 0 0 0; padding: 23px 14px;
+      background: var(--card); border-radius: 16px;
+      box-shadow: 0 2px 22px #1c76eb2a; text-align: center;
     }
-
-    .bubble-menu .item {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.5s ease;
-      transform: scale(0);
+    #gallery-section.active { display: block; }
+    .gallery-images {
+      display: flex; gap: 15px; justify-content: center;
+      flex-wrap: wrap; margin-top: 14px;
     }
-
-    .bubble-menu.active .item {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1);
+    .gallery-images img {
+      width: 120px; height: 80px; object-fit: cover;
+      border-radius: 10px; box-shadow: 0 2px 8px #0087ff30;
+      transition: filter 0.12s, transform 0.12s; cursor: pointer;
     }
-
-    .bubble-menu .icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 2px solid var(--text);
-      color: var(--text);
-      font-size: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
+    .gallery-images img:hover {
+      filter: brightness(0.87) blur(0.01px) drop-shadow(0 0 8px #00bfffb0);
+      transform: scale(1.04);
     }
-
-    .bubble-menu .label {
-      position: absolute;
-      bottom: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.6);
-      padding: 2px 8px;
-      border-radius: 10px;
-      opacity: 0;
+    .modal {
+      display: none; position: fixed; z-index: 1200;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: var(--modal-bg);
+      justify-content: center; align-items: center;
+      animation: fadeIn 0.23s;
     }
-
-    .bubble-menu .icon:hover + .label {
-      opacity: 1;
+    .modal.active { display: flex; }
+    .modal-content {
+      position: relative; background: transparent; border-radius: 16px;
+      max-width: 96vw; max-height: 93vh;
+      display: flex; flex-direction: column; align-items: flex-end;
     }
-
-    .bubble-menu.active .item1 { transform: translate(-160px, -60px); }
-    .bubble-menu.active .item2 { transform: translate(-120px, -140px); }
-    .bubble-menu.active .item3 { transform: translate(0px, -180px); }
-    .bubble-menu.active .item4 { transform: translate(120px, -140px); }
-
-    .chatbox {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 280px;
-      max-height: 400px;
-      background: var(--card);
-      border: 1px solid var(--text);
-      border-radius: 12px;
-      padding: 10px;
+    .modal-image {
+      max-width: 92vw; max-height: 80vh;
+      border-radius: 10px; box-shadow: 0 7px 45px #111b; background: #fff;
+    }
+    .download-btn {
+      position: absolute; top: 18px; right: 20px;
+      background: #fff; color: #0047ab; font-size: 1.19em;
+      padding: 9px 18px 9px 15px; border-radius: 21px; border: none;
+      box-shadow: 0 3px 12px #1114; font-weight: bold; cursor: pointer;
+      z-index: 20; display: flex; align-items: center; gap: 6px;
+      text-decoration: none; transition: background 0.11s;
+    }
+    .download-btn:hover { background: #e2eeff; color: #009; }
+    .close-modal {
+      position: absolute; top: 17px; left: 20px; background: #fff;
+      border-radius: 50%; width: 37px; height: 37px; display: flex;
+      justify-content: center; align-items: center; font-size: 1.5em; color: #c00; font-weight: bold;
+      border: none; box-shadow: 0 1px 7px #1116; cursor: pointer; z-index: 21; transition: background 0.15s;
+    }
+    .close-modal:hover { background: #ffe9e9; }
+    /* CONTACT BUTTON AND MODAL */
+    /* .contact-btn removed, as it's now .gallery-toggle-btn */
+    .contact-modal {
       display: none;
-      flex-direction: column;
+      position: fixed; z-index: 1210;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: var(--modal-bg);
+      justify-content: center; align-items: center;
+      animation: fadeIn .2s;
     }
-    .chatbox.active { display: flex; }
-    .chatbox textarea {
-      resize: none;
-      width: 100%;
-      height: 60px;
-      margin-top: 10px;
-      padding: 6px;
-      border-radius: 6px;
+    .contact-modal.active { display: flex; }
+    .contact-modal-content {
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 8px 44px #0040;
+      padding: 34px 32px 28px 32px;
+      max-width: 99vw;
+      min-width: 298px;
+      position:relative;
+      display: flex; flex-direction:column; align-items:center;
     }
-    .chatbox .messages {
-      flex: 1;
-      overflow-y: auto;
-      font-size: 13px;
+    .contact-modal-content h3 {
+      margin-bottom: 18px;
+      color: #0047ab;
+      letter-spacing:0.02em;
+    }
+    .contact-modal-content label {
+      width:100%; font-weight:600; margin-bottom:2px; color:#292b48; font-size:1.04em;
+      text-align:left; display:block;
+    }
+    .contact-modal-content input,
+    .contact-modal-content textarea {
+      width: 282px; border: 1.3px solid #00afe6; border-radius:9px;
+      font-size: 1em; padding:10px 13px; margin-bottom: 18px;
+      outline:none;
+      box-sizing:border-box;
+      font-family:inherit;
+    }
+    .contact-modal-content textarea { resize: vertical; min-height: 57px; max-height:120px;}
+    .contact-modal-content .contact-actions {
+      display: flex; gap: 15px; justify-content:center; width:100%; margin-top:12px;
+    }
+    .contact-modal-content .close-contact-modal {
+      position: absolute; top: 14px; right: 18px;
+      font-size: 1.4em;
+      color: #d00;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color .17s;
+      border-radius:50%;
+      width:31px; height:31px; display:flex; align-items:center; justify-content:center;
+    }
+    .contact-modal-content .close-contact-modal:hover { color: #fd5858; background: #ffeaea; }
+    .contact-modal-content .send-btn {
+      background: #19cb57;
+      color: #fff; font-size:1.09em; border: none; border-radius:14px;
+      padding: 11px 32px; font-weight:bold; cursor: pointer;
+      transition: background 0.1s;
+      letter-spacing:0.01em;
+      box-shadow: 0 2px 12px #19cb5748;
+    }
+    .contact-modal-content .send-btn:hover {
+      background: #36cc6d;
+    }
+    #successModal {
+      display:none;
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      z-index:2000;
+      background:rgba(0,0,0,0.4);
+      align-items:center;
+      justify-content:center;
+    }
+    #successModal .success-box {
+      background:#fff;
+      color:#222;
+      font-size:1.18em;
+      padding:36px 28px 30px 28px;
+      border-radius:21px;
+      min-width:220px;
+      text-align:center;
+      box-shadow:0 7px 24px #0002;
+    }
+    @keyframes fadeIn {0% { opacity:0; }100% { opacity:1; }}
+
+    @media (max-width:900px) { .about-me {flex-direction:column; align-items:flex-start;} .avatar {margin-bottom:15px;} .main-content {padding:20px 4vw;} }
+    @media (max-width:600px) {
+      .header-inner {padding:10px 8px; border-radius:16px;}
+      .brand { font-size: 1.22rem;}
+      .fixed-clock, .fixed-toggle-btn {top:auto;bottom:12px;padding:6px 7px; font-size:1em;}
+      .main-content{margin-top:100px;}
+      .gallery-toggle-btn {font-size:1em; padding: 7px 12px 7px 10px}
+      .gallery-toggle-btn .gallery-btn-icon {margin-right: 7px;}
+      .modal-image { max-width: 94vw; max-height: 73vh; }
+      .close-modal, .download-btn {top: 13px;}
+      .contact-modal-content { min-width: 92vw; padding:18px 7vw 19px 7vw;}
+      .contact-modal-content input, .contact-modal-content textarea { width:94vw; }
+      /* Make buttons stack on small screens for accessibility */
+      .gallery-row { flex-direction: column !important; gap: 0 !important;}
+      .gallery-toggle-btn { width: 100%; margin-bottom: 10px; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 <body>
-
 <header>
-  <div class="header-inner">
-    <div class="brand-wrapper">
-      <h1 class="brand">SURESHKUMAR S</h1>
-      <p class="tagline">Creative Technologist & Developer</p>
+  <div class="header-inner" role="banner">
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/ssureshkxmar" aria-label="LinkedIn" target="_blank" title="LinkedIn"><span style="font-size:18px;">in</span></a>
+      <a href="https://github.com/ssureshkxmar" aria-label="GitHub" target="_blank" title="GitHub">🐙</a>
+      <a href="https://instagram.com/ssureshkxmar" aria-label="Instagram" target="_blank" title="Instagram">📸</a>
+      <a href="mailto:ssureshkxmar@gmail.com" class="mail" aria-label="E-mail" title="Email">✉️</a>
     </div>
   </div>
 </header>
 
-<div class="fixed-clock" id="digitalClock"></div>
+<div class="fixed-clock" id="digitalClock" aria-label="Digital Clock"></div>
+<button class="fixed-toggle-btn" id="themeToggle" aria-label="Toggle Theme">🌙 Dark</button>
+<button class="scrolltop-btn" id="scrollTopBtn" aria-label="Scroll to Top">⬆️</button>
 
-<button class="fixed-toggle-btn" id="themeToggle">🌙 Dark</button>
+<main class="main-content" id="main" tabindex="0">
+  <section class="about-me">
+    <img src="p.jpg" class="avatar" alt="Profile Picture"/>
+    <div style="margin-top:16px;margin-bottom:8px;">
+      <div style="font-size:1.4em;font-weight:bold;color:#00bfff;text-align:center;letter-spacing:0.02em;">
+        SURESHKUMAR S
+      </div>
+      <ul style="list-style:none; padding:0; color:#fff; font-size:1.04em; margin:8px 0 0 0;">
+        <li><b>Age:</b> 19</li>
+        <li><b>College:</b> KARE College</li>
+        <li><b>Branch:</b> ECE Student</li>
+      </ul>
+    </div>
+    <div class="bio-details">
+      <h2>About Me</h2>
+      <p>Hello! I'm based in Krishnan Kovil, Tamil Nadu.<br>
+      I design and develop elegant web solutions, blending technology, art, and strategy.<br>
+      On this page you'll find my social links and can download my resume. For language convenience, view the site in Tamil, Hindi, or English!</p>
+      <a href="resume.pdf" download class="resume-btn language-btn" style="background:var(--primary);color:#fff;">Download CV</a>
+    </div>
+  </section>
 
-<div class="bubble-menu" id="bubbleMenu">
-  <div class="item item1"><a href="gallery.html" class="icon">🖼️</a><div class="label">Gallery</div></div>
-  <div class="item item2"><a href="skills.html" class="icon">🛠️</a><div class="label">Skills</div></div>
-  <div class="item item3"><a href="contact.html" class="icon">📞</a><div class="label">Contact</div></div>
-  <div class="item item4"><div class="icon" id="aiIcon">🤖</div><div class="label">AI Bot</div></div>
+  <!-- Gallery & Contact Button Row -->
+  <div class="gallery-row" style="display: flex; align-items: center; margin-top: 24px; position: relative; gap:13px; flex-wrap: wrap;">
+    <div title="Tap to open Gallery"
+         style="width: 88px; height: 143px; margin-right: -10px; cursor: pointer; z-index: 2; position:relative;"
+         onclick="document.getElementById('galleryBtn').click();"
+         aria-label="Doraemon cartoon pointing to Gallery">
+      <!-- (SVG Doraemon here if needed) -->
+    </div>
+    <button class="gallery-toggle-btn" id="galleryBtn" type="button">
+      <span class="gallery-btn-icon">
+        <!-- (Sparkle & Magnifier SVG if wanted) -->
+      </span>
+      <span>Gallery</span>
+    </button>
+    <button class="gallery-toggle-btn" id="contactBtn" type="button" style="background:var(--primary);">
+      <span class="gallery-btn-icon">📨</span>
+      <span>Contact</span>
+    </button>
+  </div>
+
+  <!-- NO separate Contact button needed! -->
+
+  <section id="gallery-section">
+    <h2 style="margin-bottom:14px">Gallery</h2>
+    <div class="gallery-images" id="galleryImages">
+      <img src="2.jpg" alt="Gallery 1" class="gallery-thumb" data-full="2.jpg">
+      <img src="3.jpg" alt="Gallery 2" class="gallery-thumb" data-full="3.jpg">
+      <img src="4.jpg" alt="Gallery 3" class="gallery-thumb" data-full="4.jpg">
+      <img src="5.jpg" alt="Gallery 4" class="gallery-thumb" data-full="5.jpg">
+      <img src="6.jpg" alt="Gallery 5" class="gallery-thumb" data-full="6.jpg">
+      <img src="7.jpg" alt="Gallery 6" class="gallery-thumb" data-full="7.jpg">
+      <img src="8.jpg" alt="Gallery 7" class="gallery-thumb" data-full="8.jpg">
+      <img src="10.jpg" alt="Gallery 8" class="gallery-thumb" data-full="10.jpg">
+      <img src="22.jpg" alt="Gallery 9" class="gallery-thumb" data-full="22.jpg">
+      <img src="23.jpg" alt="Gallery 10" class="gallery-thumb" data-full="23.jpg">
+      <img src="25.jpg" alt="Gallery 11" class="gallery-thumb" data-full="25.jpg">
+      <img src="26.jpg" alt="Gallery 12" class="gallery-thumb" data-full="26.jpg">
+      <img src="p.jpg"  alt="Gallery 13" class="gallery-thumb" data-full="p.jpg">
+    </div>
+  </section>
+</main>
+
+<!-- Modal for Full Image View -->
+<div id="imgModal" class="modal" tabindex="-1" aria-modal="true" role="dialog">
+  <div class="modal-content">
+    <button class="close-modal" id="closeModal" aria-label="Close Modal">&times;</button>
+    <a id="downloadLink" class="download-btn" download>
+      ⬇️ Download
+    </a>
+    <img id="modalImg" class="modal-image" src="" alt="Full Preview"/>
+  </div>
 </div>
 
-<button class="bubble-button" id="clickBtn">🔘</button>
+<!-- Contact Modal -->
+<div id="contactModal" class="contact-modal" tabindex="-1" aria-modal="true" role="dialog">
+  <form class="contact-modal-content" id="contactForm" autocomplete="off">
+    <button type="button" class="close-contact-modal" id="closeContactModal" aria-label="Close Modal">&times;</button>
+    <h3>Contact Me via WhatsApp</h3>
+    <label for="contactName">Name</label>
+    <input type="text" id="contactName" name="contactName" required maxlength="60" placeholder="Your name">
+    <label for="contactNumber">Number</label>
+    <input type="tel" id="contactNumber" name="contactNumber" required pattern="[\d +-]{7,15}" maxlength="15" placeholder="Your phone number">
+    <label for="contactMessage">What is your message?</label>
+    <textarea id="contactMessage" name="contactMessage" required maxlength="500" placeholder="Type your message here"></textarea>
+    <div class="contact-actions">
+      <button class="send-btn" id="sendMsgBtn" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
 
-<div class="chatbox" id="chatbox">
-  <div class="messages" id="chatMessages"></div>
-  <textarea id="chatInput" placeholder="Ask me anything..."></textarea>
+<!-- Success Modal -->
+<div id="successModal">
+  <div class="success-box">
+    Submitted Successfully!
+  </div>
 </div>
 
 <script>
-  const themeBtn = document.getElementById("themeToggle");
   function updateClock() {
     const now = new Date();
     document.getElementById("digitalClock").textContent =
@@ -288,33 +412,109 @@
   setInterval(updateClock, 1000);
   updateClock();
 
+  const themeBtn = document.getElementById("themeToggle");
   themeBtn.onclick = () => {
     document.body.classList.toggle("dark");
     themeBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
     localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   };
-
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
     themeBtn.textContent = "☀️ Light";
   }
 
-  document.getElementById("clickBtn").onclick = () => document.getElementById("bubbleMenu").classList.toggle("active");
-  document.getElementById("aiIcon").onclick = () => document.getElementById("chatbox").classList.toggle("active");
-
-  document.getElementById("chatInput").addEventListener("keydown", function(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      const userText = this.value.trim();
-      if (userText) {
-        document.getElementById("chatMessages").innerHTML += `<div><b>You:</b> ${userText}</div>`;
-        setTimeout(() => {
-          document.getElementById("chatMessages").innerHTML += `<div><b>AI:</b> I'm here to help with anything you ask, SURESHKUMAR!</div>`;
-        }, 800);
-        this.value = "";
-      }
+  let scrollBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    if (document.body.scrollTop > 240 || document.documentElement.scrollTop > 240) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
     }
+  };
+  scrollBtn.onclick = () => {window.scrollTo({top:0, behavior:'smooth'});}
+  document.getElementById("galleryBtn").onclick = function() {
+    document.getElementById("gallery-section").classList.toggle("active");
+    if (document.getElementById("gallery-section").classList.contains("active")) {
+      document.getElementById("gallery-section").scrollIntoView({behavior:"smooth"});
+    }
+  }
+
+  // Modal Gallery (Full Image Preview + Download)
+  const galleryImgs = document.querySelectorAll('.gallery-thumb');
+  const modal = document.getElementById('imgModal');
+  const modalImg = document.getElementById('modalImg');
+  const downloadLink = document.getElementById('downloadLink');
+  const closeModal = document.getElementById('closeModal');
+
+  galleryImgs.forEach((img) => {
+    img.addEventListener('click', function() {
+      const src = this.getAttribute('data-full');
+      modalImg.src = src;
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+      downloadLink.href = src;
+      let name = src.split('/').pop() || 'download.jpg';
+      downloadLink.setAttribute('download', name);
+    });
   });
+  closeModal.onclick = closeModalHandler;
+  modal.onclick = function(e) {
+    if (e.target === modal) closeModalHandler();
+  };
+  function closeModalHandler() {
+    modal.classList.remove('active');
+    setTimeout(()=>{ modal.style.display='none'; },110);
+    modalImg.src = '';
+    downloadLink.href = '';
+  }
+  window.addEventListener('keydown', function(e) {
+    if (modal.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc'))
+      closeModalHandler();
+  });
+
+  // CONTACT MODAL CODE
+  const contactBtn = document.getElementById("contactBtn");
+  const contactModal = document.getElementById("contactModal");
+  const closeContactModal = document.getElementById("closeContactModal");
+  const contactForm = document.getElementById("contactForm");
+  const successModal = document.getElementById("successModal");
+
+  contactBtn.onclick = function() {
+    contactModal.classList.add("active");
+  };
+  closeContactModal.onclick = function() {
+    contactModal.classList.remove("active");
+    contactForm.reset();
+  };
+  contactModal.onclick = function(e) {
+    if (e.target === contactModal) {
+      contactModal.classList.remove("active");
+      contactForm.reset();
+    }
+  };
+
+  contactForm.onsubmit = function(e) {
+    e.preventDefault();
+
+    // Compose WhatsApp message
+    const name = document.getElementById("contactName").value.trim();
+    const number = document.getElementById("contactNumber").value.trim();
+    const message = document.getElementById("contactMessage").value.trim();
+    let msg = "Name: " + name + "%0ANumber: " + number + "%0AMessage: " + message;
+    let waUrl = `https://wa.me/918925427760?text=${msg}`;
+
+    // Open WhatsApp with prefilled message
+    window.open(waUrl, '_blank');
+
+    // Show success modal, close contact modal, reset, do NOT redirect
+    contactModal.classList.remove('active');
+    successModal.style.display = 'flex';
+    setTimeout(function(){
+      successModal.style.display = 'none';
+    }, 1500);
+
+    contactForm.reset();
+  }
 </script>
 </body>
 </html>
